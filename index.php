@@ -30,6 +30,6 @@
         echo "Olá, " . $_GET["nome"] . "! Seja bem-vindo!";
     }
 ?>
-
+<a href="admin/produtos/cadastrar.php">Cadastrar Produto</a>
 </body>
 </html>
