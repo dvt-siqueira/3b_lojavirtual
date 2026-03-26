@@ -12,6 +12,9 @@
         <label for="preco">Preço:</label>
         <input type="number" id="preco" name="preco" step="0.01" required>
 
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" required>
+
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" rows="4"></textarea>
 

@@ -4,15 +4,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $preco = $_POST['preco'];
+    $quantidade = $_POST["quantidade"];
     //preparar a comando SQL para inserir o produto
-    $sql = "INSERT INTO produtos (nome, descricao, preco)
- VALUES (:nome, :descricao, :preco)";
+    $sql = "INSERT INTO produtos (nome, descricao, preco, quantidade)
+ VALUES (:nome, :descricao, :preco, :quantidade)";
     $stmt = $pdo->prepare($sql);
     try {
         $stmt->execute([
             'nome' => $nome,
             'descricao' => $descricao,
-            'preco' => $preco
+            'preco' => $preco,
+            'quantidade' => $quantidade
+
         ]);
 
         $mensagem = "Produto salvo com sucesso!";
