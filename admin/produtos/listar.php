@@ -49,8 +49,12 @@
                 echo "<td>R$ " . number_format($p["preco"], 2, ",", ".") . "</td>";
                 echo "<td>" . $p["quantidade"] . "</td>";
                 echo "<td>";
-                echo "<a href='editar.php?id=" . $p["id"] . "'>Editar</a> | ";
-                echo "<a href='excluir.php?id=" . $p["id"] . "' onclick=\"return confirm('Tem certeza?')\">Excluir</a>";
+                echo "<a href='editar.php?id=" . $p["id"] . "'>
+                <i class='fa-solid fa-pen-to-square' style='color: #007bff;'></i>
+                </a> | ";
+                echo "<a href='excluir.php?id=" . $p["id"] . "' onclick=\"return confirm('Tem certeza?')\">
+                <i class='fa-solid fa-trash-can' style='color: #dc3545;'></i>
+                </a>";
                 echo "</td>";
                 echo "</tr>";
             }
