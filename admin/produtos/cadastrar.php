@@ -19,6 +19,8 @@
         <textarea id="descricao" name="descricao" rows="4"></textarea>
 
         <button type="submit">Salvar Produto</button>
+        <a href="http://localhost/3b_lojavirtual/admin/produtos/listar.php" target="_blank" style="text-decoration: none; padding: 10px; border-radius: 5px;">
+    Listar Produto</a>
     </form>
 
 </body>
