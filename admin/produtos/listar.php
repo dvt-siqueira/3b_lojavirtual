@@ -25,13 +25,43 @@
 </head>
 
 <body>
+    <fieldset>
+        <legend>Filtro de Produtos</legend>
+    <form method="GET" action="listar.php">
+        <input type="text" name="busca" 
+        placeholder="Digite o nome do produto"
+        value="<?php echo $_GET['busca'] ?? ''; ?>">
+         <select name="preco_max">
+            <option value="">Preço até...</option>
+            <option value="50" <?php echo (isset($_GET['preco_max']) && $_GET['preco_max'] == '50') ? 'selected' : ''; ?>>Até R$ 50,00</option>
+            <option value="100" <?php echo (isset($_GET['preco_max']) && $_GET['preco_max'] == '100') ? 'selected' : ''; ?>>Até R$ 100,00</option>
+            <option value="500" <?php echo (isset($_GET['preco_max']) && $_GET['preco_max'] == '500') ? 'selected' : ''; ?>>Até R$ 500,00</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </fieldset>
     <div class=container>
         <h1>Lista de Produtos</h1>
         <?php
         require_once '../../config.php';
         try {
-            $sql = "SELECT id, nome, preco, quantidade FROM produtos order by nome asc";
-            $stmt = $pdo->query($sql);
+            $busca = $_GET['busca'] ?? '';
+
+            $sql = "SELECT id, nome, preco, quantidade
+            FROM produtos where 1=1";
+            $params = [];
+            if (!empty($busca)) {
+                $sql .= " AND nome LIKE :busca";
+                $params[':busca'] = "%$busca%";
+            }
+            $preco_max = $_GET['preco_max'] ?? '';
+            if (!empty($preco_max)) {
+            $sql .= " AND preco <= :preco_max";
+            $params[':preco_max'] = $preco_max;
+            }
+
+            $sql .= " ORDER BY nome ASC";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($params);
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die("Erro ao listar produtos: " . $e->getMessage());
