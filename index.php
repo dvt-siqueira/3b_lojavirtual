@@ -3,7 +3,7 @@ require_once __DIR__ . '/admin/produtos/functions.php';
 $produtos = buscarProdutos($pdo, $_GET['busca'] ?? '');
 
 exibirCabecalho('Home || PI3 3B Store');
-
+exibirNavbar();
 ?>
 <main class="container">
     <div class="vitrine">
