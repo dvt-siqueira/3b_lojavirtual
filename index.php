@@ -1,40 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<?php
+require_once __DIR__ . '/admin/produtos/functions.php';
+$produtos = buscarProdutos($pdo, $_GET['busca'] ?? '');
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Minha Loja Virtual</title>
-</head>
+exibirCabecalho('Home || PI3 3B Store');
 
-<body>
-
-    <h1>Minha Loja Virtual</h1>
-
-    <p>
-        <?php
-        echo "Bem-vindo à nossa loja!";
-        ?>
-    </p>
-
-    <p>
-        Acesso realizado às:
-        <?php echo date("H:i:s"); ?>
-    </p>
-
-
-    <form method="get">
-        <input type="text" name="nome">
-        <button type="submit">Entrar</button>
-    </form>
-
-    <?php
-    if (isset($_GET["nome"])) {
-        echo "Olá, " . $_GET["nome"] . "! Seja bem-vindo!<br><br>";
-    }
-    ?>
-    <a href="admin/produtos/cadastrar.php">Cadastrar Produto</a>
-    
-</body>
-
-</html>
+?>
+<main class="container">
+    <div class="vitrine">
+       <?php // foreach ($produtos as $p);?>
+    </div>
+</div>
+</main>
+<?php exibirRodape();?>
