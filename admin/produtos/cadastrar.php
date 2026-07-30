@@ -1,28 +1,45 @@
-<html>
-<head>
-    <title>Cadastro de Produtos</title>
-    <link rel="stylesheet"  href="../../css/styles.css">
-</head>
-<body>
-    <H1>Cadastrar Produtos</H1>
-    <form action="salvar.php" method="post">
-        <label for="nome">Nome do Produto:</label>
-        <input type="text" id="nome" name="nome" required>
+<?php
+require_once 'functions.php';
+exibirCabecalho("Cadastrar Novo Produto - Admin");
+exibirNavbar();
+?>
 
-        <label for="preco">Preço:</label>
-        <input type="number" id="preco" name="preco" step="0.01" required>
+<main class="container">
+    <div class="page-header">
+        <h1>Cadastrar Produto</h1>
+        <a href="listar.php" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Voltar
+        </a>
+    </div>
 
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" name="quantidade" required>
+    <div class="form-container">
+        <form action="salvar.php" method="post">
+            <div class="form-group">
+                <label for="nome">Nome do Produto</label>
+                <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: Teclado Mecânico">
+            </div>
 
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" rows="4"></textarea>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <label for="preco">Preço (R$)</label>
+                    <input type="number" id="preco" name="preco" class="form-control" step="0.01" required placeholder="0,00">
+                </div>
+                <div>
+                    <label for="quantidade">Quantidade em Estoque</label>
+                    <input type="number" id="quantidade" name="quantidade" class="form-control" required placeholder="0">
+                </div>
+            </div>
 
-        <button type="submit">Salvar Produto</button>
-        <a href="http://localhost/3b_lojavirtual/admin/produtos/listar.php" target="_blank" style="text-decoration: none; padding: 10px; border-radius: 5px;">
-    Listar Produto</a>
-    </form>
+            <div class="form-group">
+                <label for="descricao">Descrição do Produto</label>
+                <textarea id="descricao" name="descricao" class="form-control" rows="4" placeholder="Detalhes sobre o produto..."></textarea>
+            </div>
 
-</body>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="fa-solid fa-save"></i> Salvar Produto
+            </button>
+        </form>
+    </div>
+</main>
 
-</html>
+<?php exibirRodape(); ?>

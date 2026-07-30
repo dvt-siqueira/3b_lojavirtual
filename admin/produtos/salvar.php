@@ -1,46 +1,37 @@
-<?php
-require_once '../../config.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $preco = $_POST['preco'];
-    $quantidade = $_POST["quantidade"];
-    //preparar a comando SQL para inserir o produto
-    $sql = "INSERT INTO produtos (nome, descricao, preco, quantidade)
- VALUES (:nome, :descricao, :preco, :quantidade)";
-    $stmt = $pdo->prepare($sql);
-    try {
-        $stmt->execute([
-            'nome' => $nome,
-            'descricao' => $descricao,
-            'preco' => $preco,
-            'quantidade' => $quantidade
-
-        ]);
-
-        $mensagem = "Produto salvo com sucesso!";
-    } catch (PDOException $e) {
-        $mensagem = "Erro ao salvar o produto: " . $e->getMessage();
-    }
-}
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto Cadastrado </title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <Title>Produto Salvo</Title>
 </head>
-
 <body>
     <div class="container">
-        <h1>Produto Cadastrado</h1>
-        <p><?php echo $mensagem; ?></p>
-        <a href="listar.php">Voltar para a lista de produtos</a>
-        <a href="cadastrar.php">Cadastrar outro produto</a>
+        <h1 id="sucesso">Produto Salvo com Sucesso!</h1>
+        <?php
+        require_once "../../config.php";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            //recebe os dados do formulário
+            $nome = $_POST["nome"];
+            $preco = $_POST["preco"];
+            $descricao = $_POST["descricao"];
+            $quantidade= $_POST["quantidade"];
+            $sql = "INSERT INTO produtos (nome, preco, descricao,quantidade)
+            VALUES (:nome, :preco, :descricao, :quantidade)";
+            $stmt = $pdo->prepare($sql);
+            //Executa a comando usando os dados do formulário
+            try {
+                $stmt->execute([
+                    ':nome' => $nome,
+                    ':preco' => $preco,
+                    ':descricao' => $descricao,
+                    ':quantidade'=> $quantidade
+                ]);
+                $mensagem = "Produto '$nome' salvo com sucessosss!";
+            } catch (PDOException $e) {
+                $mensagem = "Erro ao salvar o produto: " . $e->getMessage();
+            }
+        }
+        ?>
+        <h1><?php echo $mensagem; ?></h1>
     </div>
 </body>
-
 </html>
