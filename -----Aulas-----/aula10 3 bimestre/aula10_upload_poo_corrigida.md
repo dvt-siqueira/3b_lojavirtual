@@ -13,6 +13,28 @@ Nesta aula, daremos um passo fundamental para tornar nossa Loja Virtual visualme
 
 ---
 
+| Conceito            | O que é                                                                          | Aplicação                                                                               | Exemplo em PHP                                                       |
+| ------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **Classe**          | Modelo que define atributos e comportamentos de um objeto.                       | Criar estruturas para representar entidades do sistema, como Produto, Cliente e Pedido. | `class Produto { public $nome; }`                                    |
+| **Objeto**          | Instância de uma classe.                                                         | Representar um item real do sistema.                                                    | `$produto = new Produto();`                                          |
+| **Atributo**        | Característica ou propriedade de um objeto.                                      | Armazenar dados como nome, preço e quantidade.                                          | `public $preco;`                                                     |
+| **Método**          | Função pertencente a uma classe.                                                 | Executar ações relacionadas ao objeto.                                                  | `public function salvar() {}`                                        |
+| **Encapsulamento**  | Protege os dados internos da classe controlando o acesso.                        | Garantir que valores sejam alterados apenas por regras definidas.                       | `private $saldo;`                                                    |
+| **Herança**         | Permite que uma classe herde características de outra.                           | Reutilizar código e criar especializações.                                              | `class Carro extends Veiculo {}`                                     |
+| **Polimorfismo**    | Permite que métodos tenham comportamentos diferentes em classes distintas.       | Tratar objetos diferentes de forma uniforme.                                            | `public function calcularFrete()` implementado de formas diferentes. |
+| **Abstração**       | Oculta detalhes complexos e expõe apenas o necessário.                           | Definir contratos para classes.                                                         | `abstract class Funcionario {}`                                      |
+| **Interface**       | Define métodos que uma classe deve implementar.                                  | Padronizar funcionalidades entre classes.                                               | `interface Pagamento { public function pagar(); }`                   |
+| **Classe Abstrata** | Classe que não pode ser instanciada e pode conter métodos abstratos e concretos. | Servir como base para outras classes.                                                   | `abstract class Animal { abstract public function emitirSom(); }`    |
+| **Construtor**      | Método executado ao criar um objeto.                                             | Inicializar atributos.                                                                  | `public function __construct($nome){ $this->nome = $nome; }`         |
+| **Destrutor**       | Método executado quando o objeto é destruído.                                    | Liberar recursos como conexões e arquivos.                                              | `public function __destruct(){}`                                     |
+| **Visibilidade**    | Define quem pode acessar atributos e métodos.                                    | Controle de acesso aos dados.                                                           | `public`, `private`, `protected`                                     |
+| **Método Estático** | Pertence à classe e não ao objeto.                                               | Funções utilitárias ou compartilhadas.                                                  | `public static function conectar(){}`                                |
+| **Constante**       | Valor que não pode ser alterado.                                                 | Definir configurações fixas.                                                            | `const TAXA = 0.15;`                                                 |
+| **Namespace**       | Organiza classes para evitar conflitos de nomes.                                 | Projetos grandes e uso de bibliotecas.                                                  | `namespace Models;`                                                  |
+| **Trait**           | Permite reutilizar métodos em várias classes.                                    | Compartilhar funcionalidades sem herança.                                               | `trait Log {}`                                                       |
+| **Getter e Setter** | Métodos para acessar e alterar atributos privados.                               | Aplicar validações e proteger dados.                                                    | `getNome()` e `setNome()`                                            |
+
+
 #### PARTE 1: O Conceito (Onde guardamos a foto?)
 
 **Analogia do Porta-Retratos:**

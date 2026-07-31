@@ -13,7 +13,7 @@ exibirNavbar();
     </div>
 
     <div class="form-container">
-        <form action="salvar.php" method="post">
+        <form action="salvar.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nome">Nome do Produto</label>
                 <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: Teclado Mecânico">
@@ -29,6 +29,10 @@ exibirNavbar();
                     <input type="number" id="quantidade" name="quantidade" class="form-control" required placeholder="0">
                 </div>
             </div>
+             <div>
+            <label>Foto do Produto:</label>
+            <input type="file" name="foto" accept="image/*" required>
+        </div>
 
             <div class="form-group">
                 <label for="descricao">Descrição do Produto</label>
