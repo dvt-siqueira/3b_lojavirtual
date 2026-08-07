@@ -35,7 +35,14 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     gap: 25px; 
     padding: 40px 0; 
 }
-
+.frm-usuario {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* distância entre todos os elementos */
+}
 .product-card { 
     background: white; 
     border-radius: 12px; 
