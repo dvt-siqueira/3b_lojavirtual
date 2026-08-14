@@ -82,6 +82,7 @@ function exibirNavbar()
             <nav class="main-nav">
                 <ul>
                     <li><a href="<?php echo $basePath; ?>index.php">Início</a></li>
+                     <li><a href="<?php echo $basePath; ?>login.php">Login</a></li>
                     <li><a href="<?php echo $basePath; ?>admin/produtos/listar.php" class="btn-admin">Admin</a></li>
                 </ul>
             </nav>
