@@ -21,10 +21,18 @@ class Student {
         echo "Idade: " . $this->age . "<br>";
         echo "Nota/Série: " . $this->grade . "<br>";
     }
+    //exercicio 07
+    public function setAge($age){
+        if ($age > 0)
+        {
+            $this->age=$age;
+        }
+    }
 }
 
 // Instanciação (Criação do objeto) e teste da classe
 $student = new Student("Andrea", 16, 10);
+$student->setAge(-14);
 $student->displayInfo();
 
 ?>

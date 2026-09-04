@@ -15,6 +15,15 @@ public function displayDetails(){
     echo "Ano:" . $this->ano . "<br>";
 }
 
+//exercicio 8
+public function setAno($ano){
+    if (is_numeric($ano)&& strlen((string)$ano) == 4){
+        $this->ano=$ano;
+    }
+}
+
+
 }
 $v = new Veiculo("corsa","Chevrolet","2000");
+$v->setAno(2010);
 $v->displayDetails();
