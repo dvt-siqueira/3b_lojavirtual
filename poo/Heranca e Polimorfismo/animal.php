@@ -1,39 +1,31 @@
 <?php
+class Animal{
+    protected $nome;
 
-// Superclasse (Classe Pai)
-class Animal {
-    protected $nome; // Atributo protegido: acessível apenas na classe pai e filhas 
-
-    public function __construct($nome) {
+    public function __construct($nome)
+    {
         $this->nome = $nome;
     }
+public function falar(){
+    echo "o animal faz o som. \n";
+}
+}
 
-    public function falar() {
-        echo "O animal faz um som.\n";
+class Cachorro extends Animal{
+    public function falar(){
+        echo " O cachorro {$this->nome} late: Au Au!\n";
     }
 }
 
-// Subclasse (Classe Filha) que herda de Animal
-class Cachorro extends Animal {
-    // Herdará automaticamente a propriedade $nome e o método falar() 
-    
-    // Sobrescrita do método falar() para dar um comportamento específico 
-    public function falar() {
-        echo "O cachorro {$this->nome} late: Au Au!\n";
+class Gato extends Animal{
+    public function falar(){
+        echo " O gato {$this->nome} mia: MiAu MiaAu!\n";
     }
-   
 }
- class Gato  extends Animal {
-    // Herdará automaticamente a propriedade $nome e o método falar() 
-    
-    // Sobrescrita do método falar() para dar um comportamento específico 
-    public function falar() {
-        echo "O Gato {$this->nome} Mia: MiAu MiAu!\n";
-    }
- }
+$dog = new Cachorro("Rex");
+$dog->falar();
 
-// Instanciação e Utilização
-$cachorro = new Cachorro("Rex");
-$gato = new Gato("Felpudo");
-$gato->falar(); // Saída: O cachorro Rex late: Au Au!
-$cachorro->falar(); 
+$cat = new Gato("Felpudo");
+$cat->falar();
+
+?>
