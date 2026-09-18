@@ -1,6 +1,13 @@
 <?php
 require_once 'functions.php';
 
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../login.php?erro=restrito");
+    exit();
+}
+//print_r($_SESSION);
+
+
 // Buscar os dados atuais do produto para preencher o formulário
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -35,8 +42,23 @@ exibirNavbar();
     <div class="form-container">
         <form action="atualizar.php" method="POST">
             <!-- Campo oculto para enviar o ID -->
+             
             <input type="hidden" name="id" value="<?php echo $p['id']; ?>">
+            <div class="product-image">
+                <?php
+                
+                $caminho_imagem = '../../assets/img/produtos/' . $p['foto'];
+                //echo htmlspecialchars($caminho_imagem);
 
+                // Verifica se o campo não está vazio e se o arquivo realmente existe na pasta
+                if (!empty($p['foto']) && file_exists($caminho_imagem)):
+                ?>
+                    <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($p['nome']); ?>">
+                <?php else: ?>
+                    <!-- Ícone padrão de fallback caso a imagem não seja encontrada -->
+                    <i class="fa-solid fa-image"></i>
+                <?php endif; ?>
+            </div>
             <div class="form-group">
                 <label for="nome">Nome do Produto</label>
                 <input type="text" id="nome" name="nome" class="form-control" value="<?php echo htmlspecialchars($p['nome']); ?>" required>

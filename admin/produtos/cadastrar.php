@@ -1,5 +1,12 @@
 <?php
 require_once 'functions.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../login.php?erro=restrito");
+    exit();
+}
+print_r($_SESSION);
+
 exibirCabecalho("Cadastrar Novo Produto - Admin");
 exibirNavbar();
 ?>
@@ -29,11 +36,10 @@ exibirNavbar();
                     <input type="number" id="quantidade" name="quantidade" class="form-control" required placeholder="0">
                 </div>
             </div>
-             <div>
-            <label>Foto do Produto:</label>
-            <input type="file" name="foto" accept="image/*" required>
-        </div>
-
+            <div>
+                <label> Foto do Produto </label>
+                <input type="file" name="foto" class="form-control" accept="image/*" required>
+            </div>
             <div class="form-group">
                 <label for="descricao">Descrição do Produto</label>
                 <textarea id="descricao" name="descricao" class="form-control" rows="4" placeholder="Detalhes sobre o produto..."></textarea>

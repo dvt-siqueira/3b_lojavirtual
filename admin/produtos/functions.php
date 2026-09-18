@@ -1,7 +1,6 @@
 <?php
-session_start();
 require_once __DIR__ . '/../../config.php';
-
+session_start();
 function buscarProdutos($pdo, $busca = '')
 {
 
@@ -84,12 +83,11 @@ function exibirNavbar()
                 <ul>
                     <?php
                     if (isset($_SESSION['usuario_id'])): ?>
-                        <!-- Itens visíveis apenas para quem está logado -->
+                       <li><a href="<?php echo $basePath; ?>admin/produtos/listar.php" class="btn-admin">Admin</a></li>
                         <li><a href="<?php echo $basePath; ?>logout.php">Logout</a></li>
-                        <li><a href="<?php echo $basePath; ?>admin/produtos/listar.php" class="btn-admin">Admin</a></li>
                     <?php else: ?>
-                        <!-- Item visível apenas para visitantes -->
-                        <li><a href="<?php echo $basePath; ?>login.php">Login</a></li>
+                         <li> <a href="<?php echo $basePath; ?>login.php">Login</a></li>
+                        
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -104,7 +102,19 @@ function exibirCardProduto($p)
 {
 ?>
     <div class="product-card">
-        <div class="product-image"><i class="fa-solid fa-image"></i></div>
+        <div class="product-image">
+        <?php 
+        $caminho_imagem = 'assets/img/produtos/' . $p['foto'];
+
+        // Verifica se o campo não está vazio e se o arquivo realmente existe na pasta
+        if (!empty($p['foto']) && file_exists($caminho_imagem)): 
+        ?>
+            <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($p['nome']); ?>">
+        <?php else: ?>
+            <!-- Ícone padrão de fallback caso a imagem não seja encontrada -->
+            <i class="fa-solid fa-image"></i>
+        <?php endif; ?>
+    </div>
         <div class="product-info">
             <h3><?php echo htmlspecialchars($p['nome']); ?></h3>
             <p class="price">

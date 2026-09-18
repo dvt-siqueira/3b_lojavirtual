@@ -1,19 +1,24 @@
 <?php
 require_once __DIR__ . '/admin/produtos/functions.php';
-
-exibirCabecalho("PI3 Store- Login"); 
+exibirCabecalho("PI3 Store - Login");
 exibirNavbar();
 ?>
 <div class="container mt-4">
     <h2>Login</h2>
-    <?php if(isset($_GET['erro'])) echo "<p style='color:red'>Dados inválidos!</p>"; ?>
+    <?php if (isset($_GET['erro'])): ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo htmlspecialchars($_GET['erro']); ?>
+        </div>
+    <?php endif; ?>
+    <form class=" frm-usuario" method="POST" action="controllers/processar_login.php">
+    <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
+    <input type="password" name="senha" placeholder="Senha" required class="form-control mb-2">
     
-    <form action="controllers/processar_login.php" method="POST" class="frm-usuario">
-        <input type="email" name="email" placeholder="E-mail" class="form-control mb-2" required>
-        <input type="password" name="senha" placeholder="Senha" class="form-control mb-2" required>
-        <button type="submit" class="btn btn-success">Entrar</button>
-    </form>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a href="cadastro_usuario.php" class="btn btn-secondary">Criar Conta</a>
+
+</form>
 </div>
-<?php 
+<?php
 exibirRodape();
 ?>

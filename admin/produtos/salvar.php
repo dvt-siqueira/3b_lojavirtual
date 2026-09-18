@@ -5,22 +5,23 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="sucesso">Produto Salvo com Sucesso!</h1>
         <?php
         require_once "../../config.php";
-        require_once "../../models/Produtos.php";
-         $mensagem = "";
+        require_once "../../models/produtos.php";
+
+        $mensagem = "";
         $p = new Produto();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //recebe os dados do formulário
-            $nome = $_POST["nome"];
-            $preco = $_POST["preco"];
-            $descricao = $_POST["descricao"];
-            $quantidade= $_POST["quantidade"];
+            // Recebe os dados do formulário
+            $nome       = $_POST["nome"] ?? '';
+            $preco      = $_POST["preco"] ?? 0;
+            $descricao  = $_POST["descricao"] ?? '';
+            $quantidade = $_POST["quantidade"] ?? 0;
 
+            // 1. Tenta realizar o upload da imagem
             if (isset($_FILES['foto']) && $p->fazerUpload($_FILES['foto'])) {
-                $foto = $p->foto; // Nome gerado pelo método fazerUpload()
+                $foto = $p->getImagem(); // Nome gerado pelo método fazerUpload()
 
                 // 2. Prepara a query SQL com os Named Parameters
                 $sql = "INSERT INTO produtos (nome, preco, descricao, quantidade, foto)
@@ -47,9 +48,10 @@
         } else {
             $mensagem = "Requisição inválida.";
         }
-        
         ?>
+
         <h1><?php echo $mensagem; ?></h1>
+         <?php header("Location: listar.php?{$mensagem};"); ?>
     </div>
 </body>
 </html>
