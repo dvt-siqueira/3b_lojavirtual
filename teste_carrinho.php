@@ -15,7 +15,7 @@ $carrinho->adicionar(new ItemCarrinho($p1, 1));
 $carrinho->adicionar(new ItemCarrinho($p2, 5));
 
 // Adicionando o mesmo produto para testar a soma de quantidades
-$carrinho->adicionar(new ItemCarrinho($p1, 2)); 
+$carrinho->adicionar(new ItemCarrinho($p1, 10)); 
 
 echo "<pre>";
 print_r($carrinho->getItens());
