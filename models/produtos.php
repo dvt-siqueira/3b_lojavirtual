@@ -7,12 +7,14 @@ class Produto
     private ?int $id;
     private string $nome;
     private float $preco;
+    private int $quantidadeEstoque;
     private string $descricao;
     private string $imagem;
 
     public function __construct(
         string $nome = '', 
         float $preco = 0.0, 
+        int $quantidadeEstoque = 0,
         string $descricao = '', 
         string $imagem = '', 
         ?int $id = null
@@ -20,6 +22,7 @@ class Produto
         $this->id = $id;
         $this->nome = $nome;
         $this->preco = $preco;
+        $this->quantidadeEstoque = $quantidadeEstoque;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
     }
@@ -27,13 +30,15 @@ class Produto
     public function getId(): ?int { return $this->id; }
     public function getNome(): string { return $this->nome; }
     public function getPreco(): float { return $this->preco; }
+    public function getQdtEstoque(): int { return $this->quantidadeEstoque; }
     public function getDescricao(): string { return $this->descricao; }
     public function getImagem(): string { return $this->imagem; }
 
     public static function buscarPorId(int $id): ?Produto 
     {
-        $db = Conexao::getConexao();
-        $stmt = $db->prepare("SELECT * FROM produtos WHERE id = :id");
+        global $pdo;
+
+        $stmt = $pdo->prepare("SELECT * FROM produtos WHERE id = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -43,6 +48,7 @@ class Produto
         return new Produto(
             $dados['nome'],
             (float)$dados['preco'],
+             (int)$dados['quantidade'],
             $dados['descricao'] ?? '',
             $dados['imagem'] ?? 'default.png',
             (int)$dados['id']
@@ -60,6 +66,7 @@ class Produto
             $produtos[] = new Produto(
                 $dados['nome'],
                 (float)$dados['preco'],
+                (int)$dados['quantidade'],
                 $dados['descricao'] ?? '',
                 $dados['imagem'] ?? 'default.png',
                 (int)$dados['id']

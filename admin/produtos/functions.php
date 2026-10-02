@@ -100,29 +100,37 @@ function exibirNavbar()
  */
 function exibirCardProduto($p)
 {
+    // Ajusta o caminho base para imagens dependendo de onde a página está sendo chamada
+    if (str_contains($_SERVER['PHP_SELF'], '/admin/')) {
+        $basePath = '../../';
+    } else {
+        $basePath = '';
+    }
 ?>
     <div class="product-card">
         <div class="product-image">
-        <?php 
-        $caminho_imagem = 'assets/img/produtos/' . $p['foto'];
+            <?php 
+            $caminho_imagem = $basePath . 'assets/img/produtos/' . $p['foto'];
 
-        // Verifica se o campo não está vazio e se o arquivo realmente existe na pasta
-        if (!empty($p['foto']) && file_exists($caminho_imagem)): 
-        ?>
-            <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($p['nome']); ?>">
-        <?php else: ?>
-            <!-- Ícone padrão de fallback caso a imagem não seja encontrada -->
-            <i class="fa-solid fa-image"></i>
-        <?php endif; ?>
-    </div>
+            if (!empty($p['foto']) && file_exists($caminho_imagem)): 
+            ?>
+                <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($p['nome']); ?>">
+            <?php else: ?>
+                <i class="fa-solid fa-image"></i>
+            <?php endif; ?>
+        </div>
         <div class="product-info">
             <h3><?php echo htmlspecialchars($p['nome']); ?></h3>
             <p class="price">
                 R$ <?php echo number_format($p['preco'], 2, ',', '.'); ?>
             </p>
-            <button class="btn-buy">Comprar</button>
+
+            <!-- Formulário enviando para carrinho.php -->
+            <form method="POST" action="<?php echo $basePath; ?>carrinho.php?acao=adicionar">
+                <input type="hidden" name="produto_id" value="<?php echo $p['id']; ?>">
+                <button type="submit" class="btn-buy">Comprar</button>
+            </form>
         </div>
     </div>
 <?php
 }
-?>
