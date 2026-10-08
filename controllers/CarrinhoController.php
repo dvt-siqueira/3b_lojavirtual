@@ -29,28 +29,28 @@ class CarrinhoController
             $item = new ItemCarrinho($produto, $quantidade);
             $this->getCarrinho()->adicionar($item);
         }
-        header('Location: carrinho.php');
+        header('Location: carrinhoVitrine.php');
         exit();
     }
 
     public function remover(int $produtoId): void
     {
         $this->getCarrinho()->remover($produtoId);
-        header('Location: carrinho.php');
+        header('Location: carrinhoVitrine.php');
         exit();
     }
 
     public function atualizar(int $produtoId, int $quantidade): void
     {
         $this->getCarrinho()->atualizarQuantidade($produtoId, $quantidade);
-        header('Location: carrinho.php');
+        header('Location: carrinhoVitrine.php');
         exit();
     }
 
     public function limpar(): void
     {
         $this->getCarrinho()->limpar();
-        header('Location: carrinho.php');
+        header('Location: carrinhoVitrine.php');
         exit();
     }
 

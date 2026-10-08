@@ -50,7 +50,7 @@ class Produto
             (float)$dados['preco'],
              (int)$dados['quantidade'],
             $dados['descricao'] ?? '',
-            $dados['imagem'] ?? 'default.png',
+            $dados['foto'] ?? 'default.png',
             (int)$dados['id']
         );
     }
@@ -68,7 +68,7 @@ class Produto
                 (float)$dados['preco'],
                 (int)$dados['quantidade'],
                 $dados['descricao'] ?? '',
-                $dados['imagem'] ?? 'default.png',
+                $dados['foto'] ?? 'default.png',
                 (int)$dados['id']
             );
         }

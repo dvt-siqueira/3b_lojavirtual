@@ -5,7 +5,7 @@ if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../../login.php?erro=restrito");
     exit();
 }
-print_r($_SESSION);
+//print_r($_SESSION);
 
 exibirCabecalho("Cadastrar Novo Produto - Admin");
 exibirNavbar();

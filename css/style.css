@@ -7,15 +7,259 @@
     --border: #e2e8f0;
 }
 
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--dark); }
 
 .container { 
     max-width: 1100px; 
     margin: 0 auto; 
-    padding: 0 20px; 
+    padding: 0 10px; 
+}
+.carrinho {
+    position: relative;
 }
 
+.carrinho a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.carrinho i {
+    font-size: 25px;
+    color: #0d6efd;
+}
+
+.carrinho-badge {
+    position: absolute;
+    top: -2px;
+    right: -1px;
+
+    min-width: 17px;
+    height: 17px;
+    padding: 0 3px;
+
+    background: #1464e8;
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Estilos do Carrinho --- */
+.page-cart {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.cart-title {
+    font-size: 1.6rem;
+    color: #1e293b;
+    margin-bottom: 24px;
+}
+
+/* Tabela */
+.cart-table-wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.cart-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.cart-table tr:last-child td {
+    border-bottom: none;
+}
+
+.product-name {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.subtotal-cell {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Formulário de Quantidade */
+.qty-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-input {
+    width: 60px;
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.qty-input:focus {
+    border-color: #2563eb;
+}
+
+.btn-refresh {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-refresh:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.btn-remove {
+    color: #ef4444;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    padding: 6px;
+}
+
+.btn-remove:hover {
+    color: #dc2626;
+}
+
+/* Resumo e Ações */
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.summary-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-secondary, .btn-clear, .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.btn-clear {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-clear:hover {
+    background: #fef2f2;
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+.summary-total {
+    font-size: 1.2rem;
+    color: #334155;
+}
+
+.summary-total strong {
+    font-size: 1.5rem;
+    color: #2563eb;
+    margin-left: 8px;
+}
+
+/* Estado Vazio */
+.cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.cart-empty-icon {
+    font-size: 3.5rem;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+}
+
+.cart-empty p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
 .main-header { 
     background: white; 
     padding: 15px 0; 
@@ -288,6 +532,7 @@ tr:hover td {
 }
 
 .btn-admin:hover {
+     background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
     opacity: 0.9;
     transform: scale(1.03);
 }
