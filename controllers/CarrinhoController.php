@@ -26,6 +26,13 @@ class CarrinhoController
     {
         $produto = Produto::buscarPorId($produtoId);
         if ($produto) {
+            $carrinho = $this->getCarrinho();
+            if (!$carrinho->validarEstoque($produto, $quantidade, false)) {
+                $msg = urlencode("Quantidade indisponível em estoque para {$produto->getNome()}. Disponível: {$produto->getQdtEstoque()}");
+                header("Location: carrinhoVitrine.php?erro={$msg}");
+                exit();
+            }
+
             $item = new ItemCarrinho($produto, $quantidade);
             $this->getCarrinho()->adicionar($item);
         }
@@ -42,6 +49,17 @@ class CarrinhoController
 
     public function atualizar(int $produtoId, int $quantidade): void
     {
+        // [ALTERAÇÃO] Busca o produto no banco e valida o estoque antes de atualizar
+        // =========================================================================
+        $produto = Produto::buscarPorId($produtoId);
+        if ($produto) {
+            $carrinho = $this->getCarrinho();
+            if (!$carrinho->validarEstoque($produto, $quantidade, true)) {
+                $msg = urlencode("Não foi possível alterar para {$quantidade} unidade(s). Estoque disponível: {$produto->getQdtEstoque()}");
+                header("Location: carrinhoVitrine.php?erro={$msg}");
+                exit();
+            }
+        }
         $this->getCarrinho()->atualizarQuantidade($produtoId, $quantidade);
         header('Location: carrinhoVitrine.php');
         exit();
