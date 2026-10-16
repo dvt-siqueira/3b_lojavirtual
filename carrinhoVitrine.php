@@ -70,7 +70,9 @@ exibirNavbar();
                                     <?php
 
                                     $caminho_imagem = 'assets/img/produtos/' . $item->getProduto()->getImagem();
-                                    if (!empty($caminho_imagem)):
+                                    $verifica = $item->getProduto()->getImagem();
+                                    echo $verifica;
+                                    if (!empty($verifica)):
                                     ?>
                                         <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($item->getProduto()->getImagem()); ?>">
                                     <?php else: ?>
