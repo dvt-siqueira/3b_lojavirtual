@@ -37,6 +37,13 @@ exibirNavbar();
 ?>
 
 <main class="container page-cart">
+    <?php if (isset($_GET['erro'])): ?>
+        <script>
+            alert("<?= htmlspecialchars($_GET['erro']) ?>");
+        </script>
+    <?php endif; ?>
+
+    
     <h2 class="cart-title">Seu Carrinho de Compras</h2>
 
     <?php if (empty($dados['itens'])): ?>
@@ -71,7 +78,7 @@ exibirNavbar();
 
                                     $caminho_imagem = 'assets/img/produtos/' . $item->getProduto()->getImagem();
                                     $verifica = $item->getProduto()->getImagem();
-                                    echo $verifica;
+                                    
                                     if (!empty($verifica)):
                                     ?>
                                         <img src="<?php echo htmlspecialchars($caminho_imagem); ?>" alt="<?php echo htmlspecialchars($item->getProduto()->getImagem()); ?>">

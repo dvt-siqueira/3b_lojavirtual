@@ -5,6 +5,18 @@ class Carrinho
 {
     private array $itens = [];
 
+    public function validarEstoque(Produto $produto, int $quantidadeSolicitada, bool $ehAtualizacao = false): bool
+    {
+        $id = $produto->getId();
+        $quantidadeAtualNoCarrinho = isset($this->itens[$id]) ? $this->itens[$id]->getQuantidade() : 0;
+
+        // Se for atualização direta, usa a quantidade solicitada.
+        // Se for adição, soma com o que já está no carrinho.
+        $totalDesejado = $ehAtualizacao ? $quantidadeSolicitada : ($quantidadeAtualNoCarrinho + $quantidadeSolicitada);
+
+        return $totalDesejado <= $produto->getQdtEstoque();
+    }
+
     public function adicionar(ItemCarrinho $item): void
     {
         $id = $item->getProduto()->getId();
@@ -51,6 +63,12 @@ class Carrinho
         return $qtd;
     }
 
-    public function getItens(): array { return $this->itens; }
-    public function limpar(): void { $this->itens = []; }
+    public function getItens(): array
+    {
+        return $this->itens;
+    }
+    public function limpar(): void
+    {
+        $this->itens = [];
+    }
 }

@@ -56,6 +56,10 @@ function exibirRodape()
         <footer class="main-footer">
             <div class="container">
                 <p>&copy; <?php echo date("Y"); ?> PI3 Store - Todos os direitos reservados</p>
+                <?php
+                echo "<pre>";
+                print_r($_SESSION);
+                echo "</pre>"; ?>
             </div>
         </footer>
     </body>
@@ -135,7 +139,8 @@ function exibirCardProduto($p)
             <?php endif; ?>
         </div>
         <div class="product-info">
-            <h3><?php echo htmlspecialchars($p['nome']); ?></h3>
+            <h3><?php echo htmlspecialchars($p['nome']); ?>
+             <p>Texto normal <sup style="color: blue;"><?php echo htmlspecialchars($p['quantidade']); ?><sup><p></h3>
             <p class="price">
                 R$ <?php echo number_format($p['preco'], 2, ',', '.'); ?>
             </p>
