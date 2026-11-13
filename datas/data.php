@@ -1,4 +1,4 @@
-<?php
+<?php 
 date_default_timezone_set('America/Sao_Paulo');
 
 $entrada = new DateTime('2025-11-12 09:00');
